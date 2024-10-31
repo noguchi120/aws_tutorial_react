@@ -1,19 +1,13 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 
 const App = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('https://rk2cf1fl78.execute-api.ap-northeast-1.amazonaws.com/test')
-      .then(response => response.json())
-      .then(data => setData(data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  const fileUrl = 'https://aws-tutorial-react.s3.amazonaws.com/test.txt';
 
   return (
     <div>
-      <h1>My Data</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <h1>File Display</h1>
+      <a href={fileUrl} target="_blank" rel="noopener noreferrer">View File</a>
+      <iframe src={fileUrl} width="100%" height="500px" title="test.txt"></iframe>
     </div>
   );
 };
